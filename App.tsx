@@ -30,7 +30,7 @@ const App: React.FC = () => {
   // State: Trading
   const [tradeAmount, setTradeAmount] = useState<number>(1);
 
-  // DETERMINISTIC PRICE CALCULATION
+  // DETERMINISTIC PRICE CALCULATION (Syncs across all devices)
   const getDeterministicChange = (symbol: string, category: string) => {
     const minuteTimestamp = Math.floor(Date.now() / 3000); 
     const seed = symbol.split('').reduce((a, b) => a + b.charCodeAt(0), 0) + minuteTimestamp;
@@ -264,7 +264,6 @@ const App: React.FC = () => {
         <div className="flex-1 overflow-y-auto custom-scroll p-4 lg:p-6 pb-24 lg:pb-6">
           {view === 'market' && (
             <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 h-full">
-              {/* Market List Compact */}
               <div className="xl:col-span-8 space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-3">
                   {stocks.map(stock => (
@@ -282,7 +281,6 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Terminal Compact */}
               <div className="xl:col-span-4">
                 <div className="sticky top-0 space-y-4">
                   {liveSelectedStock ? (
@@ -332,7 +330,7 @@ const App: React.FC = () => {
                       <div className="mt-6 pt-4 border-t border-white/5">
                         <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
                           <span className="w-4 h-4 bg-emerald-500/10 rounded flex items-center justify-center text-[8px]">G</span> 
-                          Terminal Insight
+                          Terminal Insight (Lite Mode)
                         </p>
                         {loadingInsight ? (
                           <div className="h-20 flex items-center justify-center"><div className="w-4 h-4 border-2 border-emerald-500/20 border-t-emerald-500 rounded-full animate-spin"></div></div>
